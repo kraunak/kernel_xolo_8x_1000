@@ -1,0 +1,20 @@
+if [ -e ./out/target/product/j608_fly/obj/KERNEL_OBJ/arch/arm/boot/zImage ]; then
+    echo "**** Successfully built kernel ****"
+
+    echo "*** COpyig kernel for patching header ***"
+    cp ./out/target/product/j608_fly/obj/KERNEL_OBJ/arch/arm/boot/zImage ./mediatek/build/tools
+
+    echo "*** Patching header ***"
+    cd /mediatek/build/tools
+    ./mkimage zImage KERNEL > /home/bgos10/hive/alps/mtktools/boot.img-kernel.img
+
+echo "*** Making boot.img ***"
+cd /home/bgos10/hive/alps/mtktools
+./repack-MTK.pl -boot boot.img-kernel.img boot.img-ramdisk /home/bgos10/hive/alps/mtktools/bootzip/boot.img
+
+echo "*** Making zip ***"
+cd /home/bgos10/hive/alps/mtktools/bootzip
+zip -r out .
+mv /home/bgos10/hive/alps/mtktools/bootzip/out.zip /home/bgos10/hive/alps/kernel.zip
+
+fi

@@ -1,0 +1,13 @@
+bootable/bootloader/lk/out
+checkenv.log
+makeMtk.ini
+mediatek/kernel/trace32/
+mediatek/misc/
+mediatek/preloader/preloader_j608.bin
+out/
+kernel/mediatek/custom/out
+auto_sync_android.log
+mediatek/external/vtmal/custom/common
+mediatek/preloader/preloader_j505_82.bin
+
+
